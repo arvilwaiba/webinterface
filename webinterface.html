@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Sentiment Analysis</h2>
+
+<form id="sentimentForm">
+  <label for="text">Enter text:</label><br>
+  <textarea id="text" name="text" rows="4" cols="50"></textarea><br>
+  <button type="button" onclick="analyzeSentiment()">Analyze Sentiment</button>
+</form>
+
+<p id="result"></p>
+
+<script>
+function analyzeSentiment() {
+  var text = document.getElementById("text").value;
+  fetch('http://2174-34-106-153-189.ngrok.io/predict_sentiment', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({text: text}),
+  })
+  .then(response => response.json())
+  .then(data => {
+    document.getElementById("result").innerHTML = 'Sentiment: ' + data.sentiment;
+  })
+  .catch((error) => {
+    console.error('Error:', error);
+  });
+}
+</script>
+
+</body>
+</html>
