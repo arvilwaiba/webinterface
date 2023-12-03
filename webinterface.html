@@ -1,3 +1,4 @@
+%%html
 <!DOCTYPE html>
 <html>
 <body>
@@ -7,15 +8,15 @@
 <form id="sentimentForm">
   <label for="text">Enter text:</label><br>
   <textarea id="text" name="text" rows="4" cols="50"></textarea><br>
-  <button type="button" onclick="analyzeSentiment()">Analyze Sentiment</button>
+  <button type="button" onclick="predictSentiment()">Predict Sentiment</button>
 </form>
 
 <p id="result"></p>
 
 <script>
-function analyzeSentiment() {
+function predictSentiment() {
   var text = document.getElementById("text").value;
-  fetch('http://2174-34-106-153-189.ngrok.io/predict_sentiment', {
+  fetch('/predict_sentiment', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -24,7 +25,7 @@ function analyzeSentiment() {
   })
   .then(response => response.json())
   .then(data => {
-    document.getElementById("result").innerHTML = 'Sentiment: ' + data.sentiment;
+    document.getElementById("result").innerHTML = 'Predicted Sentiment: ' + data.sentiment;
   })
   .catch((error) => {
     console.error('Error:', error);
