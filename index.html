@@ -1,5 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sentiment Analysis</title>
+</head>
 <body>
 
 <h2>Sentiment Analysis</h2>
@@ -13,9 +18,13 @@
 <p id="result"></p>
 
 <script>
+const ngrokUrl = window.location.origin;
+
 function predictSentiment() {
   var text = document.getElementById("text").value;
-  fetch('http://138f-34-91-5-218.ngrok.io', {
+  document.getElementById("result").innerHTML = 'Predicting...';
+
+  fetch(`${ngrokUrl}/predict_sentiment`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -27,6 +36,7 @@ function predictSentiment() {
     document.getElementById("result").innerHTML = 'Predicted Sentiment: ' + data.sentiment;
   })
   .catch((error) => {
+    document.getElementById("result").innerHTML = 'Error predicting sentiment.';
     console.error('Error:', error);
   });
 }
