@@ -15,7 +15,7 @@
 <script>
 function predictSentiment() {
   var text = document.getElementById("text").value;
-  fetch('/predict_sentiment', {
+  fetch('http://138f-34-91-5-218.ngrok.io', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
