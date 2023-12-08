@@ -18,13 +18,13 @@
 <p id="result"></p>
 
 <script>
-const renderAppUrl = ' https://dashboard.render.com/web/srv-clpfnjh46foc73a9jcig';
+const flaskAppUrl = 'https://sentiment-flash6.onrender.com'; // Update with your correct Flask app URL
 
 function predictSentiment() {
   var text = document.getElementById("text").value;
   document.getElementById("result").innerHTML = 'Predicting...';
 
-  fetch(`${ngrokUrl}/predict_sentiment`, {
+  fetch(`${flaskAppUrl}/predict_sentiment`, {  // Use the correct URL
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
